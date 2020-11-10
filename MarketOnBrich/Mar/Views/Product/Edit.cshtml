@@ -1,0 +1,21 @@
+﻿@model Mar.ViewModels.ChangeProductModel
+
+<h2>Изменение продукта @Model.ProductName</h2>
+
+<form asp-action="Edit" method="post" class="mb-2">
+    <input type="hidden" name="productId" value="@Model.ProductId" />
+    <div class="form-group">
+        @foreach (var category in Model.AllCategories)
+        {
+            <input type="radio" name="category" value="@category.Name"
+                   @((Model.ProductCategory == category.Name) ? "checked=\"checked\"" : "") />@category.Name <br />
+        }
+        <textarea name="description" value="@Model.ProductDescription" cols="60" rows="3" style="resize:none">@Model.ProductDescription</textarea><br />
+    </div>
+    <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
+</form>
+<form asp-action="Delete" asp-route-id="@Model.ProductId" method="post">
+    <button type="submit" class="btn btn-sm btn-danger">
+        Удалить
+    </button>
+</form>
