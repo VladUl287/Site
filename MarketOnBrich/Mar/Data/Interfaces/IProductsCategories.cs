@@ -7,7 +7,7 @@ namespace Mar.Data.Interfaces
     {
         IEnumerable<Category> AllCategories { get; }
         public Category FindCategoryById(int id);
-        public List<Category> FindCategoryById(List<int> categoriesId);
+        public List<Category> FindListCategories(List<int> categoriesId);
         public void AddCategory(string category);
         public void DeleteCategory(Category category);
     }

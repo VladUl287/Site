@@ -9,7 +9,7 @@
         <label for="category"><b>Категория продукта</b></label><br />
             @foreach (var category in Model)
             {
-                <input type="radio" name="category" value="@category.Name" 
+                <input type="checkbox" name="category" value="@category.Id" 
                        @((category.Name == "Все") ? "checked=\"checked\"" : "") />@category.Name <br />
             }
         <br />

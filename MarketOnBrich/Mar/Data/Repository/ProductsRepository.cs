@@ -20,16 +20,16 @@ namespace Mar.Data.Repository
         public IEnumerable<Product> AllProducts => _appDbContent.Products;
         public IEnumerable<Product> GetFavProducts => _appDbContent.Products.Where(c => c.IsFavorite == true);
 
-        public void AddProduct(Product product)
+        public Product AddProduct(Product product)
         {
             _appDbContent.Products.Add(product);
             _appDbContent.SaveChanges();
+            return _appDbContent.Products.FirstOrDefault(x => x.Name == product.Name);
         }
 
-        public async void EditProduct(int id, string category, string description)
+        public async void EditProduct(int id, string description)
         {
             var product = await _appDbContent.Products.FindAsync(id);
-            product.CategoryName = category;
             product.Description = description;
             _appDbContent.SaveChanges();
         }
@@ -42,6 +42,28 @@ namespace Mar.Data.Repository
         {
             _appDbContent.Products.Remove(product);
             _appDbContent.SaveChanges();
+        }
+        //Relations
+        public void AddRelation(Relations relations)
+        {
+            _appDbContent.Relations.Add(relations);
+            _appDbContent.SaveChanges();
+        }
+
+        public List<Relations> ProductRelations(int id)
+        {
+            return _appDbContent.Relations.Where(x => x.productId == id).ToList();
+        }
+
+        public void ChangeRelation(List<Relations> relations)
+        {
+            var a = _appDbContent.Relations.Where(x => x.productId == relations.First().productId);
+            if (relations != a)
+            {
+                _appDbContent.Relations.RemoveRange(a);
+                _appDbContent.Relations.AddRange(relations);
+                _appDbContent.SaveChanges();
+            }
         }
     }
 }

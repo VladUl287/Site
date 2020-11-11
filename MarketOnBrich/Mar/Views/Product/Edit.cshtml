@@ -7,8 +7,8 @@
     <div class="form-group">
         @foreach (var category in Model.AllCategories)
         {
-            <input type="radio" name="category" value="@category.Name"
-                   @((Model.ProductCategory == category.Name) ? "checked=\"checked\"" : "") />@category.Name <br />
+            <input type="checkbox" name="idCategories" value="@category.Id"
+                   @((Model.ProductCategories.Contains(category)) ? "checked=\"checked\"" : "") />@category.Name <br />
         }
         <textarea name="description" value="@Model.ProductDescription" cols="60" rows="3" style="resize:none">@Model.ProductDescription</textarea><br />
     </div>

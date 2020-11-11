@@ -18,14 +18,14 @@ namespace Mar.Data.Repository
             return _appDbContent.Categories.Find(id);
         }
 
-        public List<Category> FindCategoryById(List<int> categoriesId)
+        public List<Category> FindListCategories(List<int> listId)
         {
-            List<Category> Categories = new List<Category>();
-            foreach (var catId in categoriesId)
+            List<Category> categories = new List<Category>();
+            for (int i = 0; i < listId.Count; i++)
             {
-                Categories.Add(_appDbContent.Categories.Find(catId));
+                categories.Add(_appDbContent.Categories.Find(listId[i]));
             }
-            return Categories;
+            return categories;
         }
 
         public void AddCategory(string name)

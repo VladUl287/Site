@@ -9,6 +9,6 @@ namespace Mar.ViewModels
         public string ProductName { get; set; }
         public string ProductDescription { get; set; }
         public List<Category> AllCategories { get; set; }
-        public string ProductCategory { get; set; }
+        public List<Category> ProductCategories { get; set; }
     }
 }
