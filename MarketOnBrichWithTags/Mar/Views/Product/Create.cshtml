@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Mar.Data.Models.Category>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="productName"><b>Название изображения</b></label>
+        <input name="productName" class="form-control" required /><br />
+        <label for="category"><b>Категория изображения</b></label><br />
+        @foreach (var category in Model)
+        {
+            <input type="radio" name="category" value="@category.Name"
+                   @((category.Name == "Изображения") ? "checked=\"checked\"" : "") />@category.Name<br />
+            }
+        <br />
+        <label for="tags"><b>Теги изображения</b></label>
+        <input name="tags" class="form-control" required /><br />
+        <label for="image"><b>Изображение</b></label><br />
+        <input type="file" name="image" accept="image/*" required/>
+    </div>
+    <button type="submit" class="btn btn-primary">Добавить</button>
+</form>

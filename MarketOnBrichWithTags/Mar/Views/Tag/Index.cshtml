@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Mar.Data.Models.Tag>
+
+<h2>Список тегов</h2>
+<table class="table">
+    @foreach (var cat in Model)
+    {
+        <tr>
+            <td>@cat.Name</td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@cat.Id" method="post">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+<a asp-action="Create">Добавить теги</a>

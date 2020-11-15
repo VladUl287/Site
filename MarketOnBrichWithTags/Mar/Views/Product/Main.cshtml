@@ -1,0 +1,37 @@
+﻿@model Mar.ViewModels.MainProductModel
+
+<div>
+    <img width="550" height="500" src="@Model.Product.PathImg" alt="@Model.Product.Name" />
+    <table class="table">
+        <tr>
+            <td>Тип изображения</td>
+            <td>@Model.ImageInfo.ImageFormat</td>
+        </tr>
+        <tr>
+            <td>Разрешение</td>
+            <td>@Model.ImageInfo.Width×@Model.ImageInfo.Height</td>
+        </tr>
+        <tr>
+            <td>Категория</td>
+            <td>@Model.Product.CategoryName</td>
+        </tr>
+        <tr>
+            <td>Колличество просмотров</td>
+            <td>@Model.Product.NumOfDownloads</td>
+        </tr>
+        <tr>
+            <td>Колличество скачиваний</td>
+            <td>@Model.Product.NumOfDownloads</td>
+        </tr>
+    </table>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-action="Download" method="post">
+            <button class="btn btn-sm btn-primary" asp-action="Download" asp-route-id="@Model.Product.Id">Скачать</button>
+        </form>
+    }
+    else
+    {
+        <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="Login">Скачать</a>
+    }
+</div>
